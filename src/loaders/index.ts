@@ -1,9 +1,14 @@
 import expressLoader from './express';
+import typeormLoader from './typeorm';
+
 import { Application } from 'express';
+import 'reflect-metadata';
 
-export default async (app: Application ) => {
-  await expressLoader(app);
-  console.log('Express Intialized');
+export default async (app: Application) => {
+	await expressLoader(app);
+	console.log('Express Intialized');
+	await typeormLoader();
+	console.log('Typeorm Intialized');
 
-  // Rajouter le loader MySQL
+	// Rajouter le loader MySQL
 };
