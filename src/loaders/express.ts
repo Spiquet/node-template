@@ -1,19 +1,21 @@
+import bodyParser from 'body-parser';
+import cors from 'cors';
+import { Application } from 'express';
 
-  import bodyParser from 'body-parser';
-  import cors from 'cors';
-  import { Application } from 'express';
+export default async (app: Application) => {
+	app.get('/status', (req, res) => {
+		res.status(200).end();
+	});
+	app.head('/status', (req, res) => {
+		res.status(200).end();
+	});
 
-  export default async ( app: Application) => {
+	app.use(cors());
+	app.use(bodyParser.urlencoded({ extended: false }));
+	app.use(bodyParser.json()); // Pour comprendre le JSON
 
-    app.get('/status', (req, res) => { res.status(200).end(); });
-    app.head('/status', (req, res) => { res.status(200).end(); });
-    app.enable('trust proxy');
+	// ...More middlewares
 
-    app.use(cors());
-    app.use(bodyParser.urlencoded({ extended: false }));
-
-    // ...More middlewares
-
-    // Return the express app
-    return app;
-  };
+	// Return the express app
+	return app;
+};

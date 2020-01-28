@@ -4,9 +4,9 @@ import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
 export class User {
 	@PrimaryGeneratedColumn() id!: number;
 
-	@Column() firstName!: string;
-
-	@Column() lastName!: string;
+	@Column({ type: 'varchar', length : 50}) name!: string;
 
 	@Column() age!: number;
+
+	@Column({ type: 'boolean', default: false}) activated!: boolean; 
 }
