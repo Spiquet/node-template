@@ -19,10 +19,10 @@ import { User } from './user.entyty';
     @Column()
     date!: Date;
 
-    @Column()
+    @Column({nullable: true})
     link1!: string;
   
-    @Column()
+    @Column({nullable: true})
     link2!: string;
 
     @OneToMany(

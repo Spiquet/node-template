@@ -1,5 +1,5 @@
 import { Application, Router, Request, Response } from 'express';
-import { userService } from '.././services/user.service';
+import { userService } from './../services/user.service';
 
 export const UserController = (app: Application) => {
 	const UserService = new userService();
