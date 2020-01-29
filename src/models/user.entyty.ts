@@ -1,4 +1,5 @@
-import { Entity, PrimaryGeneratedColumn, Column, Index, CreateDateColumn } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, Index, CreateDateColumn, ManyToMany, JoinTable } from 'typeorm';
+import { Event } from './event.entyty';
 
 export enum UserRole {
 	GHOST = 'ghost',
@@ -42,5 +43,9 @@ export enum UserRole {
   
 	@Column({ default: false })
 	isActive!: boolean;
+
+	//@ManyToMany(type => Event)
+    //@JoinTable()
+    //events!: Event[];
 
 }

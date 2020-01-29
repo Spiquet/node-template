@@ -1,5 +1,6 @@
-import {Entity,PrimaryGeneratedColumn,Column,OneToMany, Timestamp,} from 'typeorm';
-  //import { Event } from './event.entity';
+import {Entity,PrimaryGeneratedColumn,Column,ManyToOne, JoinTable, ManyToMany} from 'typeorm';
+import { Spectacle } from './spectacle.entyty';
+import {User} from './user.entyty'
   
   @Entity()
   export class Event {
@@ -8,12 +9,25 @@ import {Entity,PrimaryGeneratedColumn,Column,OneToMany, Timestamp,} from 'typeor
     @PrimaryGeneratedColumn()
     id!: number;
   
-    @Column()
-    date!: number;
+   
+    @Column({ type: 'timestamp'})
+    startAt!: Date;
+
+    @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP'})
+    endAt!: Date;
   
-    @Column()
-    time!: number;
+    @Column({ nullable: true })
+    description!: string;
   
+
+    @ManyToOne(
+        type => Spectacle,
+        spectacle => spectacle.events)
+    spectacle!: Spectacle;
+
+    @ManyToMany(type => User)
+    @JoinTable()
+    users!: User[];
     
     
   
