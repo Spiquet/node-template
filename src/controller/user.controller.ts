@@ -14,5 +14,9 @@ export const UserController = (app: Application) => {
 		res.send(await UserService.post(req.body));
 	});
 
+	userRouter.delete('/:id', async (req: Request, res: Response) => {
+		res.send(await UserService.deleteById(parseInt(req.params.id, 10)));
+	});
+
 	app.use('/user', userRouter);
 };

@@ -18,4 +18,8 @@ export class userService {
 	post(user: User) {
 		return this.repository.save(user);
 	}
+
+	deleteById(id: number) {
+		return this.repository.delete(id);
+	}
 }

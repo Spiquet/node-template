@@ -11,4 +11,12 @@ import { EntityRepository, Repository } from 'typeorm';
 @EntityRepository(User)
 export class UserRepository extends Repository<User> {
 	private static instance: UserRepository;
+
+	//findBy(name: string) {
+	//	return this.findOne({ name });
+	//}
+	//
+	//findByAge(age: number) {
+	//	return this.findOne({ age });
+	//}
 }

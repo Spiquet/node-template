@@ -1,12 +1,46 @@
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, Index, CreateDateColumn } from 'typeorm';
 
-@Entity()
-export class User {
-	@PrimaryGeneratedColumn() id!: number;
+export enum UserRole {
+	GHOST = 'ghost',
+	USER = 'user',
+	ADMIN = 'admin',
+  }
+  @Entity()
+  export class User {
+  
+	@PrimaryGeneratedColumn()
+	id!: number;
+  
+	@Column()
+	firstName!: string;
+  
+	@Column()
+	lastName!: string;
+  
+	@Column()
+	password!: string;
+  
+	@Column()
+	tel!: string;
+  
+	@Index({ unique: true })
+	@Column()
+	email!: string;
+  
+	@Column({
+	  type: 'enum',
+	  enum: UserRole,
+	  default: UserRole.GHOST,
+	})
+	role?: UserRole;
+  
+	@CreateDateColumn()
+	createdAt!: Date;
+  
+	@CreateDateColumn()
+	updateAt!: Date;
+  
+	@Column({ default: false })
+	isActive!: boolean;
 
-	@Column({ type: 'varchar', length : 50}) name!: string;
-
-	@Column() age!: number;
-
-	@Column({ type: 'boolean', default: false}) activated!: boolean; 
 }
