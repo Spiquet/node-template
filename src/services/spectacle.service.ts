@@ -12,7 +12,7 @@ export class spectacleService {
 
 	repository = getCustomRepository(SpectacleRepository);
 
-	// Récuperer les services
+	// Récuperer les spectacles
 	get() {
 		return this.repository.find();
 	}
@@ -22,15 +22,15 @@ export class spectacleService {
 		return this.repository.save(spectacle);
 	}
 
-	//// Modifier un spectacle (Admin)
-	//async update(idElement: number, element: ObjectLiteral) {
-	//	const one = await this.repository.findOne(idElement);
-	//	if (!one) {
-	//		throw new Error(`l'objet d'id ${idElement} n'existe pas `);
-	//	}
-	//	this.repository.merge(one, element);
-	//	return this.repository.save(one, element);
-	//}
+	// Modifier un spectacle (Admin)
+	async update(idElement: number, element: ObjectLiteral) {
+		const one = await this.repository.findOne(idElement);
+		if (!one) {
+			throw new Error(`l'objet d'id ${idElement} n'existe pas `);
+		}
+		this.repository.merge(one, element);
+		return this.repository.save(one, element);
+	}
 
 	// Supprimer un spectacle (Admin)
 	deleteById(id: number) {

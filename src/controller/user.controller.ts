@@ -14,6 +14,11 @@ export const UserController = (app: Application) => {
 		res.send(await UserService.post(req.body));
 	});
 
+	userRouter.put('/:id', async (req: Request, res: Response) => {
+		const obj = await UserService.update(parseInt(req.params.id, 10), req.body);
+		res.send(obj);
+	});
+
 	userRouter.delete('/:id', async (req: Request, res: Response) => {
 		res.send(await UserService.deleteById(parseInt(req.params.id, 10)));
 	});

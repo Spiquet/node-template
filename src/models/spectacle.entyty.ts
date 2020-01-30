@@ -1,7 +1,6 @@
 import {Entity,PrimaryGeneratedColumn,Column,OneToMany, Timestamp, JoinTable, ManyToMany,} from 'typeorm';
 import { Event } from './event.entyty';
-import { type } from 'os';
-import { User } from './user.entyty';
+
   
   @Entity()
   export class Spectacle {

@@ -14,6 +14,11 @@ export const SpectacleController = (app: Application) => {
 		res.send(await SpectacleService.post(req.body));
 	});
 
+	spectacleRouter.put('/:id', async (req: Request, res: Response) => {
+		const obj = await SpectacleService.update(parseInt(req.params.id, 10), req.body);
+		res.send(obj);
+	});
+
 	spectacleRouter.delete('/:id', async (req: Request, res: Response) => {
 		res.send(await SpectacleService.deleteById(parseInt(req.params.id, 10)));
 	});

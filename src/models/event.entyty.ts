@@ -1,6 +1,13 @@
 import {Entity,PrimaryGeneratedColumn,Column,ManyToOne, JoinTable, ManyToMany} from 'typeorm';
 import { Spectacle } from './spectacle.entyty';
 import {User} from './user.entyty'
+
+
+export enum EventRole {
+  SPECTACLE = 'Spectacle',
+  // COURS = 'Cours'
+}
+
   
   @Entity()
   export class Event {
@@ -8,6 +15,13 @@ import {User} from './user.entyty'
     
     @PrimaryGeneratedColumn()
     id!: number;
+
+    @Column({
+      type: 'enum',
+      enum: EventRole,
+      default: EventRole.SPECTACLE,
+    })
+    eventType!: EventRole;
   
    
     @Column({ type: 'timestamp'})
