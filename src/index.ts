@@ -21,6 +21,4 @@ async function startServer() {
 	app.listen(3000, () => console.log('Express server  is running'));
 }
 
-//var argon2 = require('argon2');
-
 startServer();

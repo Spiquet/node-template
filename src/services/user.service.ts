@@ -1,5 +1,5 @@
 import { UserRepository } from '../repository/user.repository';
-import { User } from '../models/user.entyty';
+import { User, UserRole } from '../models/user.entyty';
 import { getCustomRepository, ObjectLiteral } from 'typeorm';
 /**
  * Cette classe est un service
@@ -16,9 +16,24 @@ export class userService {
 		return this.repository.find();
 	}
 
+	// Récupérer les user par id
+	getById(id: number) {
+		const getId = this.repository.findOne(id);
+		if (!getId) {
+			throw new Error(`l'objet d'id ${id} n'existe pas `);
+		}
+		return getId;
+	}
+
 	// Créer un user
 	post(user: User) {
 		return this.repository.save(user);
+	}
+
+	// Activation d'un user
+	async userActivation(user: User) {
+		user.isActive = true;
+		await this.repository.update(user.id, user);
 	}
 
 	// Modifier un user (Admin)
